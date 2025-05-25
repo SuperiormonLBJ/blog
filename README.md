@@ -1,5 +1,12 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+Next.js and Tailwind CSS. Here's what we have:
+A modern Next.js 14 project with the App Router
+TypeScript support
+Tailwind CSS for styling
+ESLint for code quality
+Basic project structure with src directory
+
 ## Getting Started
 
 First, run the development server:

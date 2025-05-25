@@ -1,0 +1,84 @@
+I'll explain each file in the project structure and its purpose:
+
+1. **Configuration Files:**
+   - `package.json`: The main project configuration file that contains:
+     - Project dependencies
+     - Scripts for running, building, and testing the application
+     - Project metadata
+   - `tsconfig.json`: TypeScript configuration file that defines:
+     - Compiler options
+     - Type checking rules
+     - Module resolution settings
+   - `next.config.ts`: Next.js configuration file for:
+     - Custom webpack configurations
+     - Environment variables
+     - Build settings
+   - `postcss.config.mjs`: Configuration for PostCSS, which is used by Tailwind CSS for:
+     - Processing CSS
+     - Adding vendor prefixes
+     - Transforming modern CSS features
+   - `eslint.config.mjs`: ESLint configuration for:
+     - Code style rules
+     - Best practices
+     - TypeScript-specific rules
+
+2. **Source Files (`src/` directory):**
+   - `src/app/`: The main application directory using Next.js 14's App Router
+     - `page.tsx`: The main home page component
+     - `layout.tsx`: The root layout component that wraps all pages
+     - `globals.css`: Global CSS styles and Tailwind CSS imports
+     - `favicon.ico`: The website favicon
+
+3. **Public Assets:**
+   - `public/`: Directory for static assets like:
+     - Images
+     - Fonts
+     - Other static files
+
+4. **Type Definitions:**
+   - `next-env.d.ts`: TypeScript declaration file for Next.js types
+
+5. **Version Control:**
+   - `.gitignore`: Specifies which files Git should ignore
+   - `.git/`: Git repository data
+
+Let me show you the contents of some key files to better understand their setup:
+
+
+Read file: src/app/layout.tsx
+
+Read file: src/app/globals.css
+Let me explain the key files in more detail:
+
+1. **`src/app/layout.tsx`**:
+   - This is the root layout component that wraps all pages
+   - It sets up:
+     - Font configuration using Geist and Geist Mono fonts
+     - Basic HTML structure
+     - Metadata for SEO
+     - Dark mode support through CSS variables
+
+2. **`src/app/globals.css`**:
+   - Contains global styles and Tailwind CSS imports
+   - Sets up:
+     - CSS variables for theming
+     - Dark mode support
+     - Basic color scheme
+     - Font configurations
+
+3. **`src/app/page.tsx`**:
+   - This is the main home page component
+   - Currently contains the default Next.js landing page
+   - This is where we'll build the blog's home page
+
+The project is set up with a modern stack:
+- **Next.js 14**: For server-side rendering and routing
+- **TypeScript**: For type safety
+- **Tailwind CSS**: For utility-first styling
+- **ESLint**: For code quality
+- **App Router**: Next.js's new routing system
+
+Would you like me to:
+1. Show you how to modify any of these files?
+2. Start building the blog structure?
+3. Explain any specific part in more detail?
