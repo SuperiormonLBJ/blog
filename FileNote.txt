@@ -13,7 +13,7 @@ I'll explain each file in the project structure and its purpose:
      - Custom webpack configurations
      - Environment variables
      - Build settings
-   - `postcss.config.mjs`: Configuration for PostCSS, which is used by Tailwind CSS for:
+   - `postcss.config.js`: Configuration for PostCSS, which is used by Tailwind CSS for:
      - Processing CSS
      - Adding vendor prefixes
      - Transforming modern CSS features
@@ -78,7 +78,15 @@ The project is set up with a modern stack:
 - **ESLint**: For code quality
 - **App Router**: Next.js's new routing system
 
-Would you like me to:
-1. Show you how to modify any of these files?
-2. Start building the blog structure?
-3. Explain any specific part in more detail?
+nextjs routing
+
+src/app/
+├── layout.tsx           <- Root layout, define header, footer and layout (applies to all routes)
+├── page.tsx            <- Home page ("/"), the main body for layout
+├── blog/               <- New route segment
+│   ├── layout.tsx     <- Blog-specific layout
+│   └── page.tsx       <- Blog page ("/blog")
+└── about/              <- Another route segment
+    └── page.tsx       <- About page ("/about")
+
+
