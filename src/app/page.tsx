@@ -1,12 +1,25 @@
 'use client'; // Add this to enable client-side interactivity
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from 'next/link';
 import { featuredPosts } from '@/data/featured-posts';
+import { HobbyPosts } from '@/data/hobby-posts';
 
 export default function Home() {
   const [showAbout, setShowAbout] = useState(false);
+  const [welcomePhase, setWelcomePhase] = useState(0); // 0: welcome, 1: transition, 2: content
+
+  // Add useEffect to control the animation sequence
+  useEffect(() => {
+    const timer1 = setTimeout(() => setWelcomePhase(1), 500); // 
+    const timer2 = setTimeout(() => setWelcomePhase(2), 750); // 
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, []);
 
   return (
     <div className="space-y-20">
@@ -38,22 +51,36 @@ export default function Home() {
           <div className="relative flex flex-col items-center justify-center min-h-[60vh]">
             {/* Introduction Content */}
             <div className={`transition-all duration-500 ${showAbout ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
-          <h1 className="apple-heading">
-            Welcome to My Blog
-          </h1>
-          <p className="apple-subheading">
-            Exploring ideas, sharing insights, and documenting my journey
-          </p>
-          <div className="mt-8 flex justify-center gap-4">
-            <a href="/blog" className="apple-button">
-              Read Blog
-            </a>
-                <button 
-                  onClick={() => setShowAbout(true)}
-                  className="apple-button bg-[var(--card-background)] text-[var(--foreground)] hover:bg-[var(--border)]"
-                >
-              About Me
-                </button>
+              {/* Welcome text - shows first */}
+              <div className={`transition-all duration-500 ${
+                welcomePhase === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+              }`}>
+                {welcomePhase === 0 && (
+                  <h1 className="apple-heading text-6xl">
+                    Welcome
+                  </h1>
+                )}
+              </div>
+
+              {/* Main content - shows after welcome disappears */}
+              <div className={`transition-all duration-500 ${
+                welcomePhase === 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+              }`}>
+                {welcomePhase === 2 && (
+                  <>
+                    <p className="apple-subheading text-3xl">
+                      Exploring ideas, sharing insights, and documenting my journey
+                    </p>
+                    <div className="mt-8 flex justify-center gap-4">
+                      <button 
+                        onClick={() => setShowAbout(true)}
+                        className="apple-button bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                      >
+                        About Me
+                      </button>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 
@@ -80,10 +107,9 @@ export default function Home() {
                   
                   {/* About Text */}
                   <div className="text-left max-w-2xl">
-                    <h2 className="text-3xl font-semibold mb-4">About Me - Li Beiji/李贝基</h2>
+                    <h2 className="text-3xl font-semibold mb-4">Li Beiji/李贝基</h2>
                     <p className="text-[var(--secondary)] mb-4">
-                      Hi! This incredible journey begins with obsessing over the PC games and getting addicted to the computer world as a whole. Now I'm a passionate software engineer and AI innovator, focused on creating meaningful digital experiences. 
-                      I love exploring new technologies and sharing my knowledge with others.
+                      Hi! This incredible journey begins with obsessing over the PC games and getting addicted to the whole computer world in the end. Now I'm a passionate Software Engineer and AI innovator, focused on creating meaningful digital experiences. 
                     </p>
                     <div className="flex gap-6 items-center">
                       <a 
@@ -181,8 +207,8 @@ export default function Home() {
       {/* Featured Posts */}
       <section className="py-16 bg-[var(--card-background)] featured-section">
         <div className="apple-container">
-          <h2 className="text-3xl font-semibold mb-8">Featured Posts</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <h2 className="text-3xl font-semibold mb-8">Featured Projects</h2>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
             {featuredPosts.map((post) => (
               <article 
                 key={post.id} 
@@ -199,7 +225,7 @@ export default function Home() {
                     priority
                   />
                   {/* Date Overlay */}
-                  <div className="absolute top-4 left-4 bg-[var(--background)]/80 backdrop-blur-sm px-3 py-1 rounded-full text-sm">
+                  <div className="absolute top-4 left-4 bg-[#2a2a2a] px-3 py-1 rounded-full text-sm">
                     {post.date.toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'short',
@@ -220,22 +246,20 @@ export default function Home() {
                     {post.description}
                   </p>
 
-                  {/* Tags with Icons - Added lighter background */}
+                  {/* Tags with Icons - Removed background */}
                   <div className="flex flex-wrap gap-3 items-center">
                     {post.tags.map((tag) => (
                       <div 
                         key={tag}
                         className="flex items-center gap-2 px-3 py-1.5 bg-[var(--accent)]/10 rounded-full"
                       >
-                        <div className="w-10 h-10 rounded-full bg-[#4a4a4a] p-1.5">
-                          <Image
-                            src={`/${tag.toLowerCase()}`}
-                            alt={tag}
-                            width={40}
-                            height={40}
-                            className="w-full h-full object-contain"
-                          />
-                        </div>
+                        <Image
+                          src={`/${tag.toLowerCase()}`}
+                          alt={tag}
+                          width={40}
+                          height={40}
+                          className="w-10 h-10 object-contain"
+                        />
                       </div>
                     ))}
                   </div>
@@ -272,30 +296,38 @@ export default function Home() {
         </div>
       </section>
 
-          {/* Featured Posts */}
+      {/* Passion Beyond Tech Section */}
       <section className="py-16 bg-[var(--card-background)] featured-section">
         <div className="apple-container">
-          <h2 className="text-3xl font-semibold mb-8">Passion Beyond Tech (BallisLife),
-            (Blue Poison)
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3].map((post, index) => (
+          <h2 className="text-3xl font-semibold mb-8">Passion Beyond Tech</h2>
+          {/* Same grid as featured posts - 2 columns */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {HobbyPosts.map((post) => (
               <article 
-                key={post} 
-                className="apple-card group"
-                style={{ animationDelay: `${index * 0.2}s` }}
+                key={post.id} 
+                className="group relative bg-[#2a2a2a] rounded-2xl overflow-hidden border border-[var(--border)] transition-all duration-300 hover:shadow-lg hover:scale-[1.02] h-64"
               >
-                <div className="aspect-video bg-[var(--border)] rounded-lg mb-4 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent)]/5 floating"></div>
-                </div>
-                <h3 className="text-xl font-semibold mb-2 group-hover:text-[var(--accent)] transition-colors">
-                  hobby {post}
-                </h3>
-                <p className="text-[var(--secondary)]">
-                  A brief description of the post that will be published soon...
-                </p>
-                <div className="mt-4 text-sm text-[var(--secondary)]">
-                  Coming soon
+                {/* Card Background with Emoji */}
+                <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-[var(--accent)]/10 to-[var(--accent)]/5">
+                  
+                  {/* Fixed positioned elements */}
+                  {/* Coming Soon - Top Right */}
+                  <div className="absolute top-4 right-4">
+                    <span className="px-2 py-1 text-xs bg-[var(--accent)]/10 text-[var(--accent)] rounded-full">
+                      Coming Soon
+                    </span>
+                  </div>
+                  
+                  {/* Title - Bottom Right */}
+                  <div className="absolute bottom-4 right-4 text-right">
+                    <h3 className="text-lg font-semibold group-hover:text-[var(--accent)] transition-colors">
+                      {post.title}
+                    </h3>
+                    <span className="text-xs text-[var(--secondary)] mt-1 block">
+                      {post.category}
+                    </span>
+                  </div>
+                  
                 </div>
               </article>
             ))}
@@ -304,26 +336,55 @@ export default function Home() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 newsletter-section">
+      <section id="contact-section" className="py-16 newsletter-section">
         <div className="apple-container text-center">
           <div className="relative">
             <div className="absolute -top-20 -left-20 w-40 h-40 bg-[var(--accent)]/10 rounded-full blur-3xl floating" style={{ animationDelay: '1s' }}></div>
             <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[var(--accent)]/10 rounded-full blur-3xl floating" style={{ animationDelay: '3s' }}></div>
           </div>
-          <h2 className="text-3xl font-semibold mb-4">Stay Updated</h2>
+          <h2 className="text-3xl font-semibold mb-4">Keep In Touch</h2>
           <p className="apple-subheading mb-8">
-            Subscribe to receive updates on new posts and projects
+            Feel free to reach out to me through any of the ways below 😄
           </p>
-          <form className="max-w-md mx-auto flex gap-4">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-full border border-[var(--border)] bg-[var(--card-background)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all duration-300"
-            />
-            <button type="submit" className="apple-button">
-              Subscribe
-            </button>
-          </form>
+          
+          {/* Contact Information */}
+          <div className="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Phone */}
+            <div className="flex items-center justify-center gap-3 p-4 bg-[var(--card-background)] rounded-2xl border border-[var(--border)] hover:scale-105 transition-transform">
+              <span className="text-2xl">📱</span>
+              <div className="text-left">
+                <p className="text-sm text-[var(--secondary)]">Phone</p>
+                <p className="font-medium">+65 8432 9134</p>
+              </div>
+            </div>
+            
+            {/* Email */}
+            <div className="flex items-center justify-center gap-3 p-4 bg-[var(--card-background)] rounded-2xl border border-[var(--border)] hover:scale-105 transition-transform">
+              <span className="text-2xl">✉️</span>
+              <div className="text-left">
+                <p className="text-sm text-[var(--secondary)]">Email</p>
+                <p className="font-medium">libeiji990812@gmail.com</p>
+              </div>
+            </div>
+            
+            {/* WhatsApp */}
+            <div className="flex items-center justify-center gap-3 p-4 bg-[var(--card-background)] rounded-2xl border border-[var(--border)] hover:scale-105 transition-transform">
+              <span className="text-2xl">💬</span>
+              <div className="text-left">
+                <p className="text-sm text-[var(--secondary)]">WhatsApp</p>
+                <p className="font-medium">+65 8432 9134</p>
+              </div>
+            </div>
+            
+            {/* LinkedIn */}
+            <div className="flex items-center justify-center gap-3 p-4 bg-[var(--card-background)] rounded-2xl border border-[var(--border)] hover:scale-105 transition-transform">
+              <span className="text-2xl">💼</span>
+              <div className="text-left">
+                <p className="text-sm text-[var(--secondary)]">LinkedIn</p>
+                <p className="font-medium">linkedin.com/in/beiji-li</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

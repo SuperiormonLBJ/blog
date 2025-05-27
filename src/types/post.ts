@@ -14,3 +14,8 @@ export interface Post {
 export interface FeaturedPost extends Post {
   featured: true;
 } 
+
+
+export interface HobbyPost extends Post {
+  featured: false;
+} 

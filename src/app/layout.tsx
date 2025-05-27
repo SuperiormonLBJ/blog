@@ -31,11 +31,11 @@ export default function RootLayout({
           <nav className="apple-container h-16 flex items-center justify-between">
             <a href="/" className="text-xl font-semibold nav-link" style={{ animationDelay: '0s' }}>Li Beiji</a>
             <div className="flex items-center gap-6">
-              <a href="/blog" className="nav-link" style={{ animationDelay: '0.2s' }}>Blog</a>
-              <a href="/about" className="nav-link" style={{ animationDelay: '0.4s' }}>About</a>
+              <a href="/" className="nav-link" style={{ animationDelay: '0.2s' }}>Home</a>
+              <a href="#contact-section" className="nav-link" style={{ animationDelay: '0.4s' }}>Contact</a>
             </div>
           </nav>
-        </header>
+        </header> 
 
         {/* Main content with padding to account for fixed header */}
         <main className="pt-16">
