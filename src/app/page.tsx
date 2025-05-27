@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from 'next/link';
+import { featuredPosts } from '@/data/featured-posts';
 
 export default function Home() {
   const [showAbout, setShowAbout] = useState(false);
@@ -80,7 +82,7 @@ export default function Home() {
                   <div className="text-left max-w-2xl">
                     <h2 className="text-3xl font-semibold mb-4">About Me - Li Beiji/李贝基</h2>
                     <p className="text-[var(--secondary)] mb-4">
-                      Wassup guys! This incredible journey begins with obsessing over the PC games and getting addicted to the computer world as a whole. Now I'm a passionate software engineer and AI innovator, focused on creating meaningful digital experiences. 
+                      Hi! This incredible journey begins with obsessing over the PC games and getting addicted to the computer world as a whole. Now I'm a passionate software engineer and AI innovator, focused on creating meaningful digital experiences. 
                       I love exploring new technologies and sharing my knowledge with others.
                     </p>
                     <div className="flex gap-6 items-center">
@@ -180,24 +182,89 @@ export default function Home() {
       <section className="py-16 bg-[var(--card-background)] featured-section">
         <div className="apple-container">
           <h2 className="text-3xl font-semibold mb-8">Featured Posts</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3].map((post, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {featuredPosts.map((post) => (
               <article 
-                key={post} 
-                className="apple-card group"
-                style={{ animationDelay: `${index * 0.2}s` }}
+                key={post.id} 
+                className="group relative bg-[#2a2a2a] rounded-2xl overflow-hidden border border-[var(--border)] transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
               >
-                <div className="aspect-video bg-[var(--border)] rounded-lg mb-4 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent)]/5 floating"></div>
+                {/* Card Image - Adjusted to show full image content */}
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-contain bg-[var(--card-background)] transition-transform duration-300 group-hover:scale-105"
+                    priority
+                  />
+                  {/* Date Overlay */}
+                  <div className="absolute top-4 left-4 bg-[var(--background)]/80 backdrop-blur-sm px-3 py-1 rounded-full text-sm">
+                    {post.date.toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric'
+                    })}
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-2 group-hover:text-[var(--accent)] transition-colors">
-                  Coming Soon: Post Title {post}
-                </h3>
-                <p className="text-[var(--secondary)]">
-                  A brief description of the post that will be published soon...
-                </p>
-                <div className="mt-4 text-sm text-[var(--secondary)]">
-                  Coming soon
+
+                {/* Card Content - Increased padding */}
+                <div className="p-8">
+                  {/* Title and Description */}
+                  <h3 className="text-2xl font-semibold mb-3 group-hover:text-[var(--accent)] transition-colors">
+                    <Link href={post.link} className="hover:underline">
+                      {post.title}
+                    </Link>
+                  </h3>
+                  <p className="text-[var(--secondary)] mb-6 text-lg">
+                    {post.description}
+                  </p>
+
+                  {/* Tags with Icons - Added lighter background */}
+                  <div className="flex flex-wrap gap-3 items-center">
+                    {post.tags.map((tag) => (
+                      <div 
+                        key={tag}
+                        className="flex items-center gap-2 px-3 py-1.5 bg-[var(--accent)]/10 rounded-full"
+                      >
+                        <div className="w-10 h-10 rounded-full bg-[#4a4a4a] p-1.5">
+                          <Image
+                            src={`/${tag.toLowerCase()}`}
+                            alt={tag}
+                            width={40}
+                            height={40}
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Read More Link - Increased size */}
+                  <div className="mt-6 flex items-center justify-between">
+                    <Link 
+                      href={post.link}
+                      className="text-[var(--accent)] hover:text-[var(--accent-hover)] text-base font-medium flex items-center gap-2"
+                    >
+                      Read More
+                      <svg 
+                        className="w-5 h-5 transition-transform group-hover:translate-x-1" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                      >
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth={2} 
+                          d="M9 5l7 7-7 7" 
+                        />
+                      </svg>
+                    </Link>
+                    <span className="text-sm text-[var(--secondary)]">
+                      {post.category}
+                    </span>
+                  </div>
                 </div>
               </article>
             ))}
@@ -208,7 +275,9 @@ export default function Home() {
           {/* Featured Posts */}
       <section className="py-16 bg-[var(--card-background)] featured-section">
         <div className="apple-container">
-          <h2 className="text-3xl font-semibold mb-8">Passion Beyond Tech</h2>
+          <h2 className="text-3xl font-semibold mb-8">Passion Beyond Tech (BallisLife),
+            (Blue Poison)
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((post, index) => (
               <article 
