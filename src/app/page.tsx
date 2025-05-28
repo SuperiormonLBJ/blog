@@ -352,7 +352,7 @@ export default function Home() {
             <div className="absolute -top-20 -left-20 w-40 h-40 bg-[var(--accent)]/10 rounded-full blur-3xl floating" style={{ animationDelay: '1s' }}></div>
             <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[var(--accent)]/10 rounded-full blur-3xl floating" style={{ animationDelay: '3s' }}></div>
           </div>
-          <h2 className="text-3xl font-semibold mb-12">Keep In Touch 🥳</h2>
+          <h2 className="text-3xl font-semibold mb-12">Keep In Touch🥳</h2>
           
           {/* Contact Information */}
           <div className="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
