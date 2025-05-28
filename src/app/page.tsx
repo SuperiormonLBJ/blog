@@ -35,7 +35,7 @@ export default function Home() {
             className="absolute min-w-full min-h-full object-cover"
           >
             <source src="/Welcome-Page.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
+            Your browser does not support the video tag...
           </video>
           {/* Optional overlay to ensure text readability */}
           <div className="absolute inset-0 bg-[var(--background)]/60 backdrop-blur-[2px]"></div>
