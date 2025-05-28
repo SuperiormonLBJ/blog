@@ -15,7 +15,7 @@ export const HobbyPosts: HobbyPost[] = [
   },
   {
     id: "2",
-    title: "Blue Poison or Blue Ocean 🤿",
+    title: "Blue Poison || Blue Ocean 🤿",
     description: "",
     date: new Date("2023-10-15"),
     link: "",

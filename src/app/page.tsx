@@ -307,23 +307,33 @@ export default function Home() {
                 key={post.id} 
                 className="group relative bg-[#2a2a2a] rounded-2xl overflow-hidden border border-[var(--border)] transition-all duration-300 hover:shadow-lg hover:scale-[1.02] h-64"
               >
-                {/* Card Background with Emoji */}
-                <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-[var(--accent)]/10 to-[var(--accent)]/5">
+                {/* Background Image */}
+                <div className="relative w-full h-full">
+                  <Image
+                    src={`/hobby/${post.category.toLowerCase().replace(/\s+/g, '-')}.png`}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover opacity-30 transition-opacity duration-300 group-hover:opacity-40"
+                  />
+                  
+                  {/* Overlay gradient for better text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-black/30"></div>
                   
                   {/* Fixed positioned elements */}
                   {/* Coming Soon - Top Right */}
-                  <div className="absolute top-4 right-4">
-                    <span className="px-2 py-1 text-xs bg-[var(--accent)]/10 text-[var(--accent)] rounded-full">
+                  <div className="absolute top-4 right-4 z-10">
+                    <span className="px-2 py-1 text-xs bg-[var(--accent)]/20 text-[var(--accent)] rounded-full backdrop-blur-sm">
                       Coming Soon
                     </span>
                   </div>
                   
                   {/* Title - Bottom Right */}
-                  <div className="absolute bottom-4 right-4 text-right">
-                    <h3 className="text-lg font-semibold group-hover:text-[var(--accent)] transition-colors">
+                  <div className="absolute bottom-4 right-4 text-right z-10">
+                    <h3 className="text-lg font-semibold group-hover:text-[var(--accent)] transition-colors text-white">
                       {post.title}
                     </h3>
-                    <span className="text-xs text-[var(--secondary)] mt-1 block">
+                    <span className="text-xs text-gray-300 mt-1 block">
                       {post.category}
                     </span>
                   </div>
@@ -336,16 +346,13 @@ export default function Home() {
       </section>
 
       {/* Newsletter Section */}
-      <section id="contact-section" className="py-16 newsletter-section">
+      <section id="contact-section" className="py-4 newsletter-section">
         <div className="apple-container text-center">
           <div className="relative">
             <div className="absolute -top-20 -left-20 w-40 h-40 bg-[var(--accent)]/10 rounded-full blur-3xl floating" style={{ animationDelay: '1s' }}></div>
             <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[var(--accent)]/10 rounded-full blur-3xl floating" style={{ animationDelay: '3s' }}></div>
           </div>
-          <h2 className="text-3xl font-semibold mb-4">Keep In Touch</h2>
-          <p className="apple-subheading mb-8">
-            Feel free to reach out to me through any of the ways below 😄
-          </p>
+          <h2 className="text-3xl font-semibold mb-12">Keep In Touch 🥳</h2>
           
           {/* Contact Information */}
           <div className="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
