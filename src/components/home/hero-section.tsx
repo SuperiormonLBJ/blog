@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { SocialLinks } from './social-links'
 
 type HeroSectionProps = {
@@ -28,27 +29,52 @@ export function HeroSection({ showAbout, onShowAbout, onBackHome }: HeroSectionP
         <div
           className={`transition-all duration-500 ${showAbout ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
         >
-          <p
-            className="text-sm font-mono tracking-[0.25em] uppercase text-[var(--accent)] mb-4 font-bold"
-            style={{ animation: 'slideIn 0.5s ease-out both' }}
-          >
-            Hello, I&apos;m
-          </p>
+          <div className="flex flex-col items-stretch gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12 xl:gap-16">
+            <div className="min-w-0 flex-1">
+              <p
+                className="text-sm font-mono tracking-[0.25em] uppercase text-[var(--accent)] mb-4 font-bold"
+                style={{ animation: 'slideIn 0.5s ease-out both' }}
+              >
+                Hello, I&apos;m
+              </p>
 
-          <h3 className="text-6xl font-bold tracking-tight leading-none mb-10">Li Beiji / 李贝基</h3>
+              <h3 className="text-6xl font-bold tracking-tight leading-none mb-10">Li Beiji / 李贝基</h3>
 
-          <p className="text-4xl font-semibold text-[var(--secondary)] mb-12">
-            Software Engineer & AI Innovator
-          </p>
+              <p className="text-4xl font-semibold text-[var(--secondary)]">
+                Software Engineer
+              </p>
+              <p className="text-4xl font-semibold text-[var(--secondary)] mb-12">
+                AI Innovator
+              </p>
 
-          <div
-            className="flex flex-wrap items-center gap-6"
-            style={{ animation: 'fadeIn 0.8s ease-out 0.6s both' }}
-          >
-            <button type="button" onClick={onShowAbout} className={matrixButtonClass}>
-              <span className="relative z-10 font-bold tracking-wider text-sm">About Me</span>
-            </button>
-            <SocialLinks />
+              <div
+                className="flex flex-wrap items-center gap-6"
+                style={{ animation: 'fadeIn 0.8s ease-out 0.6s both' }}
+              >
+                <button type="button" onClick={onShowAbout} className={matrixButtonClass}>
+                  <span className="relative z-10 font-bold tracking-wider text-sm">About Me</span>
+                </button>
+                <SocialLinks />
+              </div>
+            </div>
+
+            <div
+              className="flex w-[min(100%,260px)] shrink-0 justify-center sm:w-[min(100%,300px)] lg:w-[min(100%,360px)] lg:justify-end"
+              style={{ animation: 'fadeIn 0.8s ease-out 0.35s both' }}
+            >
+              <div className="hero-portrait-wrap w-full">
+                <div className="hero-portrait-frame aspect-square w-full">
+                  <Image
+                    src="/profile_picture.jpeg"
+                    alt="Portrait illustration of Li Beiji"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 280px, 360px"
+                    className="hero-portrait-img"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
