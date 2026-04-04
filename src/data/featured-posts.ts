@@ -66,10 +66,34 @@ export const featuredPosts: FeaturedPost[] = [
     title: "Personal Blog",
     description: "Personal Portfolio built with Next.js and Tailwind CSS",
     date: new Date("2025-5-15"),
-    link: "vercel link.....",
+    link: "https://portfolio-beiji.vercel.app/",
     tags: ["ts.png", "tailwindCSS.png", "vercel.png","nextjs.png"],
     category: "Frontend",
     image: "/Tech-Project/blog.png",
+    featured: true,
+    content: "Full blog post content here..."
+  },
+  {
+    id: "7",
+    title: "BestFriend-Digital Twin",
+    description: "A personal digital twin chat with includes a RAG-powered chatbot, an AI-powered job preparation page, admin & knowledge management, and evaluation with a production-ready stack.",
+    date: new Date("206-2-01"),
+    link: "https://my-best-friend-five.vercel.app/chat",
+    tags: ["python.png", "rag.png", "langchain.png","nextjs.png","langgraph.png","multi-agent.png"],
+    category: "AI/Full-Stack",
+    image: "/Tech-Project/mybestfriend.png",
+    featured: true,
+    content: "Full blog post content here..."
+  },
+  {
+    id: "8",
+    title: "Best Price Notification Agent",
+    description: "A personal digital twin chat with includes a RAG-powered chatbot, an AI-powered job preparation page, admin & knowledge management, and evaluation with a production-ready stack.",
+    date: new Date("206-2-01"),
+    link: "NA",
+    tags: ["python.png", "rag.png", "LoRA.png","gradio.png","huggingFace.png","multi-agent.png"],
+    category: "AI/Full-Stack",
+    image: "/Tech-Project/bestprice.png",
     featured: true,
     content: "Full blog post content here..."
   }

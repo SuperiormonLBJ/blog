@@ -122,3 +122,43 @@
     animation: float 6s ease-in-out infinite;
   }
 }
+
+/* ── dynamic-layout.ts generated elements ── */
+#stage .headline,
+#stage .credit {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
+#stage .headline {
+  color: var(--foreground);
+  margin: 0;
+}
+
+#stage .headline-line {
+  position: absolute;
+  white-space: pre;
+  color: var(--foreground);
+}
+
+#stage .credit {
+  color: var(--secondary);
+  white-space: nowrap;
+}
+
+#stage .line {
+  position: absolute;
+  white-space: pre;
+  color: var(--secondary);
+  pointer-events: none;
+  user-select: text;
+}
+
+#stage .logo {
+  position: absolute;
+  display: block;
+  transform-origin: center;
+  will-change: transform;
+  cursor: pointer;
+}

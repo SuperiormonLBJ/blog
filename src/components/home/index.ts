@@ -1,0 +1,5 @@
+export { ContactSection } from './contact-section'
+export { FeaturedProjectsSection } from './featured-projects-section'
+export { HeroSection } from './hero-section'
+export { HobbySection } from './hobby-section'
+export { SocialLinks } from './social-links'
