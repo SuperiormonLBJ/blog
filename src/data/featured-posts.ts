@@ -76,24 +76,24 @@ export const featuredPosts: FeaturedPost[] = [
   {
     id: "7",
     title: "BestFriend-Digital Twin",
-    description: "A personal digital twin chat with includes a RAG-powered chatbot, an AI-powered job preparation page, admin & knowledge management, and evaluation with a production-ready stack.",
+    description: "A multi-agent personal digital twin chat with includes a RAG-powered chatbot, an AI-powered job preparation page, admin & knowledge management, and evaluation with a production-ready stack.",
     date: new Date("206-2-01"),
     link: "https://my-best-friend-five.vercel.app/chat",
-    tags: ["python.png", "rag.png", "langchain.png","nextjs.png","langgraph.png","multi-agent.png"],
+    tags: ["python.png", "rag.png", "langchain-color.svg","nextjs.png","langgraph-color.svg","multi-agent.png"],
     category: "AI/Full-Stack",
-    image: "/Tech-Project/mybestfriend.png",
+    image: "/Tech-Project/digital-twin.png",
     featured: true,
     content: "Full blog post content here..."
   },
   {
     id: "8",
     title: "Best Price Notification Agent",
-    description: "A personal digital twin chat with includes a RAG-powered chatbot, an AI-powered job preparation page, admin & knowledge management, and evaluation with a production-ready stack.",
+    description: "A price notifier agent with fine-tuned Llama-3.1-8B using QLoRA and deployed it on Modal, achieving 40% lower error than GPT-4o, while leveraging a Chroma retrieval system (0.92 MRR, 96% coverage) and a multi-agent architecture to deliver an MVP via Gradio.",
     date: new Date("206-2-01"),
     link: "NA",
-    tags: ["python.png", "rag.png", "LoRA.png","gradio.png","huggingFace.png","multi-agent.png"],
+    tags: ["python.png", "rag.png","gradio-color.svg","hugging-face.png","multi-agent.png"],
     category: "AI/Full-Stack",
-    image: "/Tech-Project/bestprice.png",
+    image: "/Tech-Project/best-price.png",
     featured: true,
     content: "Full blog post content here..."
   }
